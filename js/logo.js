@@ -39,6 +39,8 @@ const createLogo = () => {
       map: texture
   })
   const mesh = new THREE.Mesh(geometry, material);
+  mesh.rotation.z = -25 * Math.PI / 180;
+
   scene.add(mesh);
   return mesh;
 }
@@ -79,30 +81,30 @@ animate();
 
 
 
-// Handle the resize
-window.addEventListener('resize', () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-})
+// // Handle the resize
+// window.addEventListener('resize', () => {
+//   camera.aspect = window.innerWidth / window.innerHeight;
+//   camera.updateProjectionMatrix();
+//   renderer.setSize(window.innerWidth, window.innerHeight);
+// })
 
-// Follow the mousemove
+// // Follow the mousemove
 
-document.addEventListener('mousemove', (event) => {
-  const halfPageWidth = window.innerWidth / 2;
-  const halfPageHeight = window.innerHeight / 2;
+// document.addEventListener('mousemove', (event) => {
+//   const halfPageWidth = window.innerWidth / 2;
+//   const halfPageHeight = window.innerHeight / 2;
 
-  // The number you multiply by is adding a velocity feel
-  targetX = (halfPageWidth - event.pageX) * 2;
-  targetY = (halfPageHeight - event.pageY) * 2;
-})
+//   // The number you multiply by is adding a velocity feel
+//   targetX = (halfPageWidth - event.pageX) * 2;
+//   targetY = (halfPageHeight - event.pageY) * 2;
+// })
 
 
-document.addEventListener('touchmove', (event) => {
-  const halfPageWidth = window.innerWidth / 2;
-  const halfPageHeight = window.innerHeight / 2;
+// document.addEventListener('touchmove', (event) => {
+//   const halfPageWidth = window.innerWidth / 2;
+//   const halfPageHeight = window.innerHeight / 2;
 
-  // The number you multiply by is adding a velocity feel
-  targetX = (halfPageWidth - event.pageX) * 2;
-  targetY = (halfPageHeight - event.pageY) * 2;
-})
+//   // The number you multiply by is adding a velocity feel
+//   targetX = (halfPageWidth - event.pageX) * 2;
+//   targetY = (halfPageHeight - event.pageY) * 2;
+// })
