@@ -45,6 +45,59 @@ const createLogo = () => {
   return mesh;
 }
 
+const createAirplane = () => {
+  const texture = loader.load("/images/airplane.png");
+  const geometry = new THREE.Geometry();
+  
+  const point = new THREE.Vector3();
+  const sphericalPoint = new THREE.Spherical(
+    - 950,
+    0.8,
+    0.8
+  )
+
+  point.setFromSpherical(sphericalPoint);
+  geometry.vertices.push(point);
+
+  const material = new THREE.PointsMaterial({
+      size: 1200,
+      map: texture,
+      transparent: true,
+      // blending: THREE.AdditiveBlending,
+      // Get rid of the boxes around the png
+      depthTest: true,
+      depthWrite: false
+  });
+
+  const points = new THREE.Points(geometry, material);
+
+  scene.add(points)
+  return points
+}
+
+// const makeSatellite = function(x,y){
+//   const geometry = new THREE.SphereGeometry( 120, 33,33 )
+//   const material = new THREE.MeshPhongMaterial({
+//     color: 0x968f8f,
+//     emissive:0x525252,
+//     flatShading:true,
+//     shininess:200,
+//     specular:0x4aff,
+//     reflectivity: 1
+//   }) 
+//    const mesh = new THREE.Mesh(geometry, material)
+  
+//    mesh.translateX(x)
+//    mesh.translateY(y)
+
+//    mesh.geometry.rotateX(Math.PI/1.3)
+//    //mesh.geometry.rotateZ(Math.PI/10)
+//   //add it to the scene and the scene
+//    scene.add(mesh)
+//    return mesh
+// }
+
+const airplaneElement = createAirplane();
 
 const logoElement = createLogo();
 
@@ -81,30 +134,30 @@ animate();
 
 
 
-// // Handle the resize
-// window.addEventListener('resize', () => {
-//   camera.aspect = window.innerWidth / window.innerHeight;
-//   camera.updateProjectionMatrix();
-//   renderer.setSize(window.innerWidth, window.innerHeight);
-// })
+// Handle the resize
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+})
 
-// // Follow the mousemove
+// Follow the mousemove
 
-// document.addEventListener('mousemove', (event) => {
-//   const halfPageWidth = window.innerWidth / 2;
-//   const halfPageHeight = window.innerHeight / 2;
+document.addEventListener('mousemove', (event) => {
+  const halfPageWidth = window.innerWidth / 2;
+  const halfPageHeight = window.innerHeight / 2;
 
-//   // The number you multiply by is adding a velocity feel
-//   targetX = (halfPageWidth - event.pageX) * 2;
-//   targetY = (halfPageHeight - event.pageY) * 2;
-// })
+  // The number you multiply by is adding a velocity feel
+  targetX = (halfPageWidth - event.pageX) * 2;
+  targetY = (halfPageHeight - event.pageY) * 2;
+})
 
 
-// document.addEventListener('touchmove', (event) => {
-//   const halfPageWidth = window.innerWidth / 2;
-//   const halfPageHeight = window.innerHeight / 2;
+document.addEventListener('touchmove', (event) => {
+  const halfPageWidth = window.innerWidth / 2;
+  const halfPageHeight = window.innerHeight / 2;
 
-//   // The number you multiply by is adding a velocity feel
-//   targetX = (halfPageWidth - event.pageX) * 2;
-//   targetY = (halfPageHeight - event.pageY) * 2;
-// })
+  // The number you multiply by is adding a velocity feel
+  targetX = (halfPageWidth - event.pageX) * 2;
+  targetY = (halfPageHeight - event.pageY) * 2;
+})
